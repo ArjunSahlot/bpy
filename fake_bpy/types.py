@@ -1,10 +1,67 @@
 import random
 from .utils import NoneType
-from .structure import bpy_struct
 
 
-class View2D(bpy_struct):
-    pass
+class bpy_struct:
+    def __init__(self):
+        self.id_data = ID()
+
+    def as_pointer(self):
+        return random.randint(100, 999999)
+
+    def driver_add(self, path, index=-1):
+        return
+    
+    def driver_remove(self, path, index=-1):
+        return False
+    
+    def get(self, key, default=None):
+        return default
+    
+    def is_property_hidden(self, property):
+        return bool(random.randint(0, 1))
+
+    def is_property_overridable_library(self, property):
+        return False
+
+    def is_property_readonly(self, property):
+        return True
+
+    def is_property_set(self, property, ghost=True):
+        return True
+
+    def items(self):
+        return {}
+
+    def keyframe_delete(self, data_path, index=-1, frame=0, group=""):
+        return False
+
+    def keyframe_insert(self, data_path, index=-1, frame=0, group="", options=set()):
+        return False
+    
+    def keys(self):
+        return self.__dict__.keys()
+    
+    def path_from_id(self, property=""):
+        return self.id_data.name
+
+    def path_resolve(self, path, coerce=True):
+        raise ValueError(f"Property not found from the path {path}")
+
+    def pop(self, key, default=None):
+        return default
+    
+    def property_overridable_library_set(self, property, overridable):
+        return False
+    
+    def property_unset(self, property):
+        return
+    
+    def type_recast(self):
+        return bpy_struct()
+    
+    def values(self):
+        return self.__dict__.values()
 
 
 class ID(bpy_struct):
@@ -59,6 +116,80 @@ class ID(bpy_struct):
     @classmethod
     def bl_rna_get_subclass_py(self, id, default=None):
         return default
+
+
+class PackedFile(bpy_struct):
+    data = ""
+    size = 0
+
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
+
+
+class Library(ID):
+    def __init__(self):
+        self.filepath = ""
+        self.packed_file = PackedFile()
+        self.parent = Library()
+        self.version = (0, 0, 0)
+        self.users_id = ID()
+
+    def reload(self):
+        return
+
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
+
+
+class IDOverrideLibrary(bpy_struct):
+    def __init__(self):
+        self.properties = [IDOverrideLibraryProperty()] * random.randint(1, 10)
+
+
+class IDOverrideLibraryProperty(bpy_struct):
+    def __init__(self):
+        self.operations = [IDOverrideLibraryPropertyOperation()] * random.randint(1, 10)
+        self.rna_path = ""
+    
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
+
+
+class IDOverrideLibraryPropertyOperation(bpy_struct):
+    def __init__(self):
+        self.flag = "MANDATORY"
+        self.operation = "REPLACE"
+        self.subitem_local_index = -1
+        self.subitem_local_name = ""
+        self.subitem_reference_index = -1
+        self.subitem_reference_name = ""
+    
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
+
+
+class View2D(bpy_struct):
+    pass
 
 
 class Region(bpy_struct):
