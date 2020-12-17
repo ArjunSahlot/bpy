@@ -1,7 +1,7 @@
 from .utils import NoneType
 from .types import *
 
-area = NoneType()
+area = Area()
 blend_data = NoneType()
 collection = NoneType()
 engine = NoneType()

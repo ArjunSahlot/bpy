@@ -1,21 +1,5 @@
 import random
-
-
-class bpy_struct:
-    def as_pointer(self):
-        return random.randint(100, 999999)
-
-    def driver_add(self, path, index=-1):
-        return
-    
-    def driver_remove(self, path, index=-1):
-        return False
-    
-    def get(self, key, default=None):
-        return default
-    
-    def is_property_hidden(self, property):
-        return True
+from structure import *
 
 
 class View2D(bpy_struct):
