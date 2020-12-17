@@ -151,6 +151,29 @@ class Library(ID):
         return default
 
 
+class ImagePreview(bpy_struct):
+    icon_id = 0
+    icon_pixels = 0
+    icon_pixels_float = 0.0
+    icon_size = (0, 0)
+    image_pixels = 0
+    image_pixels_float = 0.0
+    image_size = (0, 0)
+    is_icon_custom = False
+    is_image_custom = False
+
+    def reload(self):
+        return
+    
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
+
+
 class IDOverrideLibrary(bpy_struct):
     def __init__(self):
         self.properties = [IDOverrideLibraryProperty()] * random.randint(1, 10)
