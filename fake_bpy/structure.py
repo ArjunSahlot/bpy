@@ -2,7 +2,9 @@ import random
 
 
 class bpy_struct:
-    id_data = ID()
+    def __init__(self):
+        self.id_data = ID()
+
     def as_pointer(self):
         return random.randint(100, 999999)
 
@@ -51,4 +53,11 @@ class bpy_struct:
     def property_overridable_library_set(self, property, overridable):
         return False
     
-    def property_unset()
+    def property_unset(self, property):
+        return
+    
+    def type_recast(self):
+        return bpy_struct()
+    
+    def values(self):
+        return self.__dict__.values()
