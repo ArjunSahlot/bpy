@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="fake_bpy",
-    version="0.0.4",
+    version="0.0.6",
     author="Arjun Sahlot",
     author_email="iarjun.sahlot@gmail.com",
     description="Module with various useful utilities.",
