@@ -14,9 +14,6 @@ setuptools.setup(
     url="https://github.com/ArjunSahlot/",
     py_modules=["module"],
     packages=setuptools.find_packages(),
-    install_requires=[
-        "numpy"
-    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
