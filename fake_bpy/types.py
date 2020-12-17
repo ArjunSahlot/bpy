@@ -212,7 +212,19 @@ class IDOverrideLibraryPropertyOperation(bpy_struct):
 
 
 class View2D(bpy_struct):
-    pass
+    def region_to_view(self, x, y):
+        return [0.0, 0.0]
+    
+    def view_to_region(self, x, y, clip=True):
+        return [0, 0]
+    
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
 
 
 class Region(bpy_struct):
