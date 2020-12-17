@@ -10,7 +10,7 @@ class bpy_struct:
         return random.randint(100, 999999)
 
     def driver_add(self, path, index=-1):
-        return
+        return NoneType()
     
     def driver_remove(self, path, index=-1):
         return False
@@ -31,7 +31,7 @@ class bpy_struct:
         return True
 
     def items(self):
-        return {}
+        return NoneType()
 
     def keyframe_delete(self, data_path, index=-1, frame=0, group=""):
         return False
@@ -55,7 +55,7 @@ class bpy_struct:
         return False
     
     def property_unset(self, property):
-        return
+        return NoneType()
     
     def type_recast(self):
         return bpy_struct()
@@ -89,7 +89,7 @@ class ID(bpy_struct):
         return ID()
     
     def user_clear(self):
-        return
+        return NoneType()
     
     def user_remap(self, new_id):
         self = new_id
@@ -104,10 +104,10 @@ class ID(bpy_struct):
         return NoneType()
     
     def animation_data_clear(self):
-        return
+        return NoneType()
     
     def update_tag(refresh={}):
-        return
+        return NoneType()
     
     @classmethod
     def bl_rna_get_subclass(self, id, default=None):
@@ -140,7 +140,7 @@ class Library(ID):
         self.users_id = ID()
 
     def reload(self):
-        return
+        return NoneType()
 
     @classmethod
     def bl_rna_get_subclass(self, id, default=None):
@@ -163,7 +163,7 @@ class ImagePreview(bpy_struct):
     is_image_custom = False
 
     def reload(self):
-        return
+        return NoneType()
     
     @classmethod
     def bl_rna_get_subclass(self, id, default=None):
@@ -236,7 +236,7 @@ class Region(bpy_struct):
     x, y = random.randint(-32767, 32767), random.randint(-32767, 32767)
 
     def tag_redraw(self):
-        return
+        return NoneType()
     
     @classmethod
     def bl_rna_get_subclass(cls, id, default=None):
@@ -247,6 +247,31 @@ class Region(bpy_struct):
         return default
 
 
+class Space(bpy_struct):
+    show_locked_time = False
+    show_region_header = False
+    type = "EMPTY"
+
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
+    
+    def draw_handler_add(cself, allback, args, region_type, draw_type):
+        return NoneType()
+    
+    def draw_handler_remove(self, handler, region_type):
+        return NoneType()
+
+
+class AreaSpaces(bpy_struct):
+    pass
+
+
 class Area(bpy_struct):
     height = random.randint(0, 32767)
     regions = [Region()] * random.randint(2, 20)
+    show_menus = False
