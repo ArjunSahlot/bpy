@@ -268,10 +268,35 @@ class Space(bpy_struct):
 
 
 class AreaSpaces(bpy_struct):
-    pass
+    active = Space()
+
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
 
 
 class Area(bpy_struct):
-    height = random.randint(0, 32767)
     regions = [Region()] * random.randint(2, 20)
     show_menus = False
+    spaces = [Space()] * random.randint(1, 4)
+    type = "VIEW_3D"
+    ui_type = ""
+    x = y = width = height = 0
+
+    def tag_redraw(self):
+        return NoneType()
+    
+    def header_text_set(self, text):
+        return NoneType()
+    
+    @classmethod
+    def bl_rna_get_subclass(self, id, default=None):
+        return default
+    
+    @classmethod
+    def bl_rna_get_subclass_py(self, id, default=None):
+        return default
