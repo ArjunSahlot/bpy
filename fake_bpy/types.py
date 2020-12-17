@@ -4,7 +4,7 @@ from .utils import NoneType
 
 class bpy_struct:
     def __init__(self):
-        self.id_data = ID()
+        self.id_data = ""
 
     def as_pointer(self):
         return random.randint(100, 999999)
@@ -43,7 +43,7 @@ class bpy_struct:
         return self.__dict__.keys()
     
     def path_from_id(self, property=""):
-        return self.id_data.name
+        return self.id_data
 
     def path_resolve(self, path, coerce=True):
         raise ValueError(f"Property not found from the path {path}")
@@ -300,3 +300,7 @@ class Area(bpy_struct):
     @classmethod
     def bl_rna_get_subclass_py(self, id, default=None):
         return default
+
+
+class BlendData(bpy_struct):
+    pass
