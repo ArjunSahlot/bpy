@@ -1,8 +1,8 @@
-from .utils import NoneType
+from .utils.nonetype import NoneType
 from .types import *
 
 area = Area()
-blend_data = NoneType()
+blend_data = BlendData()
 collection = NoneType()
 engine = NoneType()
 gizmo_group = NoneType()
